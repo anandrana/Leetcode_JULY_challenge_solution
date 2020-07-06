@@ -1,0 +1,22 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        carry=0
+        list1=[]
+        n=len(digits)
+        for i in range(n-1,-1,-1):
+            if(i==n-1):
+                s=digits[i]+1
+                r=s%10
+                list1.append(r)
+                carry=s//10
+            else:
+                s=digits[i]+carry
+                r=s%10
+                list1.append(r)
+                carry=s//10
+        if(carry!=0):
+            list1.append(carry)
+        list1.reverse()
+        return list1
+            
+        
