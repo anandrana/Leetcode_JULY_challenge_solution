@@ -1,0 +1,20 @@
+import math
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        list1=[]
+        n=len(nums)
+        m=int(math.pow(2,n))
+        
+        for i in range(m):
+            temp=[]
+            for j in range(n):
+                if(i & (1<<j)):
+                    # print(nums[j])
+                    temp+=[nums[j]]
+                    # x=nums[j:i+1]
+                    # if x not in list1:
+                    #     list1.append(x)
+            list1.append(temp)
+        return list1
+        
