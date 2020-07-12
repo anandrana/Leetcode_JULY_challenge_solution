@@ -1,0 +1,17 @@
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        
+        t=bin(n).replace('0b','')
+        print(t)
+        x='0'*(32-len(t))
+        t=x+t
+        st=list(t)
+        total=0
+        for i in range(len(st)):
+            if(st[i]=='1'):
+                total+=int(math.pow(2,i))
+        return total
+        
+    
+        
+        
