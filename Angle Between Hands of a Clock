@@ -1,0 +1,11 @@
+class Solution:
+    def angleClock(self, hour: int, minutes: int) -> float:
+        h=hour*30
+        x=minutes/5
+        m=x*30
+        s=0.5*minutes
+        total=h-m+s
+        total=abs(total)
+        total1=(360-total)
+        # print(total,total1)
+        return abs(min(total,total1))
