@@ -1,0 +1,49 @@
+from collections import defaultdict
+
+class Graph:
+    def __init__(self,numCourses):
+        self.V=numCourses
+        self.graph=defaultdict(list)
+    
+    def addedge(self,u,v):
+        self.graph[u].append(v)
+    
+    def isCyclicUtil(self,node,visited,recStack,stack):
+        visited[node]=True
+        recStack[node]=True
+        
+        for ngh in self.graph[node]:
+            if visited[ngh]==False:
+                if self.isCyclicUtil(ngh,visited,recStack,stack):
+                    return True
+            elif recStack[ngh]==True:  #if any node is visited and present in the recursion_stack then cyclic is present
+                
+                return True
+        
+        recStack[node]=False
+        stack.append(node)
+        
+            
+            
+    def isCyclic(self):
+        visited=[False]*(self.V)
+        recStack=[False]*(self.V)
+        stack=[]
+        for i in range(self.V):
+            if visited[i]==False:
+                if self.isCyclicUtil(i,visited,recStack,stack):
+                    return []
+        return stack
+        
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        
+        g=Graph(numCourses)
+        for i in prerequisites:
+            u=i[0]
+            v=i[1]
+            g.addedge(u,v)
+            
+        return g.isCyclic()
+    
+        
