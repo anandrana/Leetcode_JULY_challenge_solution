@@ -1,0 +1,68 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        list1=[]
+        a=a[::-1]
+        b=b[::-1]
+        
+        if(len(a)>len(b)):
+            carry=0
+            
+            for i in range(0,len(b)):
+                # print(int(a[i]),int(b[i]))
+                list1.append(str((carry+int(a[i])+int(b[i]))%2))
+                if(carry+int(a[i])+int(b[i])>=2):
+                    carry=1
+                else:
+                    carry=0
+            
+            for j in range(len(b),len(a)):
+                list1.append(str((carry+int(a[j]))%2))
+                if(carry+int(a[j])==2):
+                    carry=1
+                else:
+                    carry=0
+            if(carry==1):
+                list1.append(str(carry))
+            
+            list1.reverse()
+            res=''.join(list1)
+            return res
+        elif(len(a)<len(b)):
+            carry=0
+            for i in range(0,len(a)):
+                # print(carry,a[i],b[i])
+                list1.append(str((carry+int(a[i])+int(b[i]))%2))
+                if(carry+int(a[i])+int(b[i])>=2):
+                    carry=1
+                else:
+                    carry=0
+                
+                
+            i=len(b)-len(a)
+            # print(i,carry)
+            for j in range(len(a),len(b)):
+                list1.append(str((carry+int(b[j]))%2))
+                if(carry+int(b[j])==2):
+                    carry=1
+                else:
+                    carry=0  
+            if(carry==1):
+                list1.append(str(carry))
+            list1.reverse()
+            res=''.join(list1)
+            return res
+        else:
+            carry=0
+            for i in range(0,len(a)):
+                list1.append(str((carry+int(a[i])+int(b[i]))%2))
+                if(carry+int(a[i])+int(b[i])>=2):
+                    carry=1
+                else:
+                    carry=0
+            if(carry==1):
+                list1.append(str(carry))
+            list1.reverse()
+            res=''.join(list1)
+            return res
+        
+        
