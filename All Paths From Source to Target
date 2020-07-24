@@ -1,0 +1,37 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        # print(graph)
+        n=len(graph)
+        Graph={}
+        for i in range(n):
+            if(i==n-1):
+                continue
+            Graph[i]=graph[i]
+        
+        # print(Graph)
+        ans=[]
+        def printAllPathsUtil(s,d,visited,path,ans):
+            visited[s]=True
+            path.append(s)
+            if(s==d):
+                # print(path)
+                a=path[:]
+                ans.append(a)
+            else:
+                for ngh in Graph[s]:
+                    if(visited[ngh]==False):
+                        printAllPathsUtil(ngh,d,visited,path,ans)
+            
+            path.pop()
+            visited[s]=False
+            
+        def printAllPaths(s,d,ans):
+            visited=[False]*n
+            path=[]
+            printAllPathsUtil(s,d,visited,path,ans)
+            # print(ans)
+                
+        printAllPaths(0,n-1,ans)
+        return ans
+    
+        
