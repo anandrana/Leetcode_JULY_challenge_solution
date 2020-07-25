@@ -1,0 +1,26 @@
+ class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        # if(len(nums)==0):
+        #     return 0
+        # return min(nums)
+        
+        list1=[]
+        for i in range(len(nums)):
+            if(nums[i] not in list1):
+                list1.append(nums[i])
+        
+        lo=0
+        hi=len(list1)-1
+        # print(list1)
+        while(lo<hi):
+            if(list1[lo]<list1[hi]):
+                break
+            
+            mid=(lo+hi)//2
+            if(list1[lo]<=list1[mid]):
+                lo=mid+1
+            else:
+                hi=mid
+        return list1[lo]
+    
+        
