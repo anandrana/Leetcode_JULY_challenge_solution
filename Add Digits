@@ -1,0 +1,11 @@
+class Solution:
+    def addDigits(self, num: int) -> int:
+        x=str(num)
+        if(len(x)==1):
+            return int(x)
+        if(num%9==0):
+            return 9
+        
+        ans=num-(9)*math.floor(num/9)
+        return ans
+        
