@@ -1,0 +1,29 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        wordDict = Counter(wordDict)
+        print(wordDict)
+        
+        memo = set()
+        results = []
+        def helper(remainingS, result):
+            if remainingS in memo:
+                return False
+            elif len(remainingS) == 0:
+                results.append(result.strip())
+                return True
+            else:
+                flag = False
+                S = ""
+                for i in range(len(remainingS)):
+                    S = S + remainingS[i]
+                    if S in wordDict:
+                        flag |= helper(remainingS[i+1:], result + S + " ")
+                # print(memo)
+                # print(flag)
+                if not flag:
+                    # print(results)
+                    memo.add(remainingS)
+                return flag
+        
+        helper(s, "")
+        return results
